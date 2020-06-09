@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from 'react';
+import Header from './components/HeaderComponent/HeaderComponent';
+import LeftMenu from './components/LeftMenuComponent/LeftMenuComponent';
+import ImageArea from './components/ImageAreaComponent/ImageAreaComponent';
+import NotesList from './components/NotesListComponent/NotesListComponent';
+
 
 function App() {
+  const [image, setImage] = useState();
+
+  const imageHandler = useCallback((img) =>{
+    setImage(img);
+  },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header imageHandler={imageHandler}/>
+      <div className='container divMain'>
+        <div className='row'>
+          <LeftMenu />
+          <ImageArea image={image}/>
+          <NotesList />
+        </div>
+      </div>
     </div>
   );
 }

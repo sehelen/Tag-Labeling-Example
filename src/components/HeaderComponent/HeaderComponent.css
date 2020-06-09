@@ -1,0 +1,34 @@
+.Header {
+    background-color:#525252;
+    padding-bottom: 2vw;
+}
+
+.btn-upload {
+    background-color: #FFFFF3;
+    border-color:#525252;
+    color:#525252;
+}
+
+.btn-login, .btn-search {
+    color: #FFFFF3;
+    border: none;
+}
+
+.btn-login:hover, .btn-login:focus,
+.btn-search:hover, .btn-search:focus,
+.btn-upload:hover, .btn-upload:focus {
+    color: #FFFFF3;
+}
+
+.Header Input {
+    background-color: #FFFFF3;
+}
+
+.Header Input:focus {
+    background-color: #FFFFF3;
+    color:#525252;
+}
+
+.inputGroup {
+    padding: 0;
+}

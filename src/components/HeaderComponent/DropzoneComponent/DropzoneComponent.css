@@ -1,0 +1,15 @@
+.btn-dropzone {
+    background-color: #FFFFF3;
+    border-color:#525252;
+    color:#525252;    
+}
+.btn-group {
+    margin-bottom: 0;
+    
+}
+.fileName{
+    color:#FFFFF3;
+    vertical-align: middle;
+    padding-bottom: 0.2vw;
+}
+

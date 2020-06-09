@@ -1,0 +1,15 @@
+.leftMenu {
+    background-color:#525252;
+    color:#FFFFF3;
+    padding-top: 1.5vw;
+    padding-left: 2.5vw;
+    
+}
+
+.listItem {
+    background-color:#525252;
+}
+
+.listItem:hover {
+    color: plum;
+}
