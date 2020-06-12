@@ -1,0 +1,15 @@
+.tag img{
+    width: 2vw;
+}
+
+.area {
+    position:relative;
+    background-color: plum;
+}
+    
+
+.tag {
+    position: absolute;
+}
+
+

@@ -1,25 +1,20 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import Header from './components/HeaderComponent/HeaderComponent';
-import LeftMenu from './components/LeftMenuComponent/LeftMenuComponent';
 import ImageArea from './components/ImageAreaComponent/ImageAreaComponent';
 import NotesList from './components/NotesListComponent/NotesListComponent';
 
 
 function App() {
-  const [image, setImage] = useState();
 
-  const imageHandler = useCallback((img) =>{
-    setImage(img);
-  },[]);
+  const [notes, setNotes] = useState([]);
 
-  return (
+   return (
     <div>
-      <Header imageHandler={imageHandler}/>
+      <Header/>
       <div className='container divMain'>
         <div className='row'>
-          <LeftMenu />
-          <ImageArea image={image}/>
-          <NotesList />
+          <ImageArea notesHandler={setNotes}/>
+          <NotesList notes={notes}/>
         </div>
       </div>
     </div>

@@ -1,22 +1,19 @@
 import React from 'react';
 import './NotesListComponent.css';
 import {ListGroup, ListGroupItem} from 'reactstrap';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
-function NotesList(){
+function NotesList({notes}){
     return(
-        <div className='notesList col-3 ml-auto'>
+        <div className='notesList col-4'>
             <h3>List of Notes</h3>
-            <ListGroup>
-                <ListGroupItem className="note">Cras justo odio</ListGroupItem>
-                <ListGroupItem className="note">Dapibus ac facilisis in</ListGroupItem>
-                <ListGroupItem className="note">Morbi leo risus</ListGroupItem>
-                <ListGroupItem className="note">Porta ac consectetur ac</ListGroupItem>
-                <ListGroupItem className="note">Vestibulum at eros</ListGroupItem>
-            </ListGroup>
+            <ScrollToBottom className="listScroll">
+                <ListGroup>
+                    {notes.map((note, i) => <ListGroupItem className="note" key={i}>{note}</ListGroupItem>)}
+                </ListGroup>
+            </ScrollToBottom>           
         </div>
     );
 }
 
 export default NotesList;
-
-//style={{backgroundColor: 'pink'}}
