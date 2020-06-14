@@ -4,21 +4,19 @@ import './ImageAreaComponent.css';
 import MainImage from './MainImageComponent/MainImageComponent';
 
 
-function ImageArea({notesHandler}) {
+function ImageArea({notes, notesHandler, selectedNote, selectedNoteHandler}) {
     const [image, setImage] = useState(null);
 
     const onDrop = useCallback(acceptedFiles => {
+        notesHandler(null);
         setImage(Object.assign(acceptedFiles[0], {
             preview: URL.createObjectURL(acceptedFiles[0])
             }));
-        }, []);
+        }, [notesHandler]);
 
     const {
             getRootProps,
-            getInputProps,
-            isDragActive,
-            isDragAccept,
-            isDragReject
+            getInputProps
     } = useDropzone({accept: 'image/*', maxFiles: 1, onDrop, noClick: true});
 
    
@@ -26,7 +24,13 @@ function ImageArea({notesHandler}) {
     const dropzoneContent = () => {
         if (image) {
             return (
-                <MainImage image={image} notesHandler={notesHandler}/>
+                <MainImage 
+                image={image} 
+                notes={notes} 
+                notesHandler={notesHandler} 
+                selectedNote={selectedNote} 
+                selectedNoteHandler={selectedNoteHandler}
+                />
             );
         }
         else {
@@ -45,32 +49,3 @@ function ImageArea({notesHandler}) {
 }
 
 export default ImageArea;
-
-
-// const baseStyle = {
-  
-  
-// };
-
-// const activeStyle = {
-//   borderColor: '#2196f3'
-// };
-
-// const acceptStyle = {
-//   borderColor: '#00e676'
-// };
-
-// const rejectStyle = {
-//   borderColor: '#ff1744'
-// };
-
-// const style = useMemo(() => ({
-//     ...baseStyle,
-//     ...(isDragActive ? activeStyle : {}),
-//     ...(isDragAccept ? acceptStyle : {}),
-//     ...(isDragReject ? rejectStyle : {})
-// }), [
-//     isDragActive,
-//     isDragReject,
-//     isDragAccept
-// ]);

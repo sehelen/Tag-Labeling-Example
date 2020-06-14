@@ -2,42 +2,48 @@ import React, {useState} from 'react';
 import './MainImageComponent.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 
-function MainImage({image, notesHandler}){
+function MainImage({image, notes, notesHandler, selectedNote, selectedNoteHandler}){
+    const [id, setId] = useState(1);
     const [modal, setModal] = useState(false);
-    const [tags, setTags] = useState([]);
-    const [tag, setTag] = useState();
-    const [note, setNote] = useState();
+    const [selectedTag, setSelectedTag] = useState();
+    const [noteText, setNoteText] = useState();
 
     const toggle = () => setModal(!modal);
 
     const onClick = (e) => {
         toggle();
 
+        selectedNoteHandler(null, null);
+
         const block = e.target.getBoundingClientRect();
         const x = e.clientX - block.left;
         const y = e.clientY - block.top;
-
-        setTag({top:y, left:x});
+        setSelectedTag({top:y, left:x});
     };
 
     const submitHandler = () => {
         setModal(!modal);
-        notesHandler(notes => [...notes, note]);
-        setTags(tags => [...tags, tag]);
+        notesHandler({
+            id: id,
+            tag: selectedTag,
+            text: noteText,
+        });
+        setId(id + 1);
     };
 
-    const tagDiv = (t,i) => {
-        if (t!==tag){
+    const tagDiv = (note, index) => {
+        console.log(note);
+        if (note === selectedNote){
             return (
-                <div className="tag" key={i} style={t}>
-                    <img src={require('../../../images/notebook.png')} />
+                <div className="tag"  id={note.id} key={index} style={note.tag} onClick={e => selectedNoteHandler(e.target.id)} >
+                    <img style={{width:"3vw"}} src={require('../../../images/notebook.png')} id={note.id} onClick={e => selectedNoteHandler(e.target.id)} />
                 </div>
             );
         }
         else {
             return (
-                <div className="tag" key={i} style={t}>
-                    <img style={{width:"3vw"}} src={require('../../../images/notebook.png')} />
+                <div className="tag" id={note.id} key={index} style={note.tag} onClick={e => selectedNoteHandler(e.target.id)} >
+                    <img src={require('../../../images/notebook.png')} id={note.id} onClick={e => selectedNoteHandler(e.target.id)} />
                 </div>
             );
         }
@@ -47,13 +53,13 @@ function MainImage({image, notesHandler}){
         <div className='divImg col-8'>
             <div className="area">
                 <img onClick={onClick} src={image.preview} />
-                {tags.map((tag, i) => tagDiv(tag,i))}
+                {notes.map((note, index) => tagDiv(note, index))}
             </div>
             
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader toggle={toggle}>Input new note here...</ModalHeader>
+                <ModalHeader>Input new note here...</ModalHeader>
                 <ModalBody>
-                    <Input type="textarea" name="noteName" id="noteId" onChange={(e) => setNote(e.target.value)}/>
+                    <Input type="textarea" onChange={(e) => setNoteText(e.target.value)}/>
                 </ModalBody>
                 <ModalFooter>
                     <Button color="primary" onClick={submitHandler}>Submit</Button>
