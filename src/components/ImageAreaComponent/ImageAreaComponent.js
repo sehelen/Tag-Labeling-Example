@@ -1,5 +1,5 @@
 import React, {useMemo, useCallback, useState } from 'react';
-import {useDropzone} from 'react-dropzone';
+import Dropzone, {useDropzone} from 'react-dropzone';
 import './ImageAreaComponent.css';
 import MainImage from './MainImageComponent/MainImageComponent';
 
@@ -7,7 +7,7 @@ import MainImage from './MainImageComponent/MainImageComponent';
 function ImageArea({notes, notesHandler, selectedNote, selectedNoteHandler}) {
     const [image, setImage] = useState(null);
 
-    const onDrop = useCallback(acceptedFiles => {
+    const onDropAccepted = useCallback(acceptedFiles => {
         notesHandler(null);
         setImage(Object.assign(acceptedFiles[0], {
             preview: URL.createObjectURL(acceptedFiles[0])
@@ -16,11 +16,26 @@ function ImageArea({notes, notesHandler, selectedNote, selectedNoteHandler}) {
 
     const {
             getRootProps,
-            getInputProps
-    } = useDropzone({accept: 'image/*', maxFiles: 1, onDrop, noClick: true});
+            getInputProps,
+            isDragActive,
+            isDragReject
+    } = useDropzone({accept: 'image/*', maxFiles: 1, onDropAccepted, noClick: true});
 
-   
-   
+    const activeStyle = {
+        borderColor: '#32C724'
+      };   
+    const rejectStyle = {
+        borderColor: '#ff1744'
+    };
+
+    const style = useMemo(() => ({
+        ...(isDragActive ? activeStyle : {}),
+        ...(isDragReject ? rejectStyle : {})
+      }), [
+        isDragActive,
+        isDragReject
+      ]);
+
     const dropzoneContent = () => {
         if (image) {
             return (
@@ -35,13 +50,13 @@ function ImageArea({notes, notesHandler, selectedNote, selectedNoteHandler}) {
         }
         else {
             return (
-                <p>Drag 'n' drop some file here, or click to select file</p>
+                <p>Drag 'n' drop some file here</p>
             );
         }
     };
 
     return (       
-        <div className="dropzone col-8" {...getRootProps()}>
+        <div {...getRootProps({className:"dropzone col-md-8", style})}>
             <input {...getInputProps()} />
             {dropzoneContent()}
         </div>

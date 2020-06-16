@@ -1,18 +1,22 @@
 .notesList {
     padding-top: 1.5vw;
     padding-left: 2.5vw;
-    background-color:#FFFFF3;
     color:#525252;
 }
 
-.listScroll {
+.scrollBox {
     height: 70vh;
 }
 
-.selectednote {
-    background-color: violet;
+.note {
+    height: 60px;
+}
+
+.selected-note {
+    height: 60px;
+    background-color: #F5D0A9;
 }
 
 .note:hover {
-    background-color: white;
+    background-color: #F8ECE0;
 }

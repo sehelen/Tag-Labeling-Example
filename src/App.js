@@ -12,22 +12,23 @@ function App() {
   const notesHandler = (note) => {
     if (note){
       setNotes(notes => [...notes, note]);
-      selectedNoteHandler(note.id, note);
+      selectedNoteHandler(null, note);
     }  
     else{
       setNotes([]);
-    }
-     
+    }    
   };
 
   const selectedNoteHandler = (id, note) => {
-    note ? setSelectedNote(note) : setSelectedNote(notes.filter(note => note.id == id)[0]);
+    id ? setSelectedNote(notes.filter(note => note.id == id)[0]) : setSelectedNote(note);
   };
 
    return (
-    <div>
-      <Header/>
-      <div className='container divMain'>
+    <div >
+      <div>
+        <Header/>
+      </div> 
+      <div className='container'>
         <div className='row'>
           <ImageArea notes={notes} notesHandler={notesHandler} selectedNote={selectedNote} selectedNoteHandler={selectedNoteHandler}/>
           <NotesList notes={notes} selectedNote={selectedNote} selectedNoteHandler={selectedNoteHandler}/>

@@ -1,22 +1,12 @@
-.btn-dropzone {
-    background-color: #FFFFF3;
-    border-color:#525252;
-    color:#525252;    
-}
-.btn-group {
-    margin-bottom: 0;
-    
-}
-.fileName{
-    color:#FFFFF3;
-    vertical-align: middle;
-    padding-bottom: 0.2vw;
-}
-
 .dropzone {
+    color:#a1a1a1;
     border-width: 2;
     border-radius: 2;
-    border-color: #2335d4c0;
+    border-color: #a1a1a1;
     border-style: dashed;
+    display: flex;
+    justify-content: center; /*Центрирование по горизонтали*/
+    align-items: center; 
+    min-height: 40vh;
 }
 

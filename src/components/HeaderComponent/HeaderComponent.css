@@ -1,34 +1,13 @@
 .Header {
     background-color:#525252;
-    padding-bottom: 2vw;
 }
 
-.btn-upload {
-    background-color: #FFFFF3;
-    border-color:#525252;
-    color:#525252;
+.nav-item {
+    margin: 1vh;
 }
 
-.btn-login, .btn-search {
-    color: #FFFFF3;
-    border: none;
+.collapse {
+    padding: 2vh 0;
 }
 
-.btn-login:hover, .btn-login:focus,
-.btn-search:hover, .btn-search:focus,
-.btn-upload:hover, .btn-upload:focus {
-    color: #FFFFF3;
-}
 
-.Header Input {
-    background-color: #FFFFF3;
-}
-
-.Header Input:focus {
-    background-color: #FFFFF3;
-    color:#525252;
-}
-
-.inputGroup {
-    padding: 0;
-}
