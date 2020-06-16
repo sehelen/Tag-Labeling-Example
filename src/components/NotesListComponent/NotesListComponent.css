@@ -1,6 +1,4 @@
 .notesList {
-    padding-top: 1.5vw;
-    padding-left: 2.5vw;
     color:#525252;
 }
 
@@ -8,12 +6,7 @@
     height: 70vh;
 }
 
-.note {
-    height: 60px;
-}
-
 .selected-note {
-    height: 60px;
     background-color: #F5D0A9;
 }
 

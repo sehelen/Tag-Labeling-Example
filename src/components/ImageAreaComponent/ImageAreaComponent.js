@@ -1,5 +1,5 @@
 import React, {useMemo, useCallback, useState } from 'react';
-import Dropzone, {useDropzone} from 'react-dropzone';
+import {useDropzone} from 'react-dropzone';
 import './ImageAreaComponent.css';
 import MainImage from './MainImageComponent/MainImageComponent';
 
@@ -33,7 +33,9 @@ function ImageArea({notes, notesHandler, selectedNote, selectedNoteHandler}) {
         ...(isDragReject ? rejectStyle : {})
       }), [
         isDragActive,
-        isDragReject
+        isDragReject,
+        activeStyle,
+        rejectStyle
       ]);
 
     const dropzoneContent = () => {

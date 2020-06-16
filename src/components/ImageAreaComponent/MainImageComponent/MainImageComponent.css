@@ -1,17 +1,31 @@
 .main-image{
-    width:100%;
+    width: 100%;
+}
+
+.tag-area {
+    position: relative;
+}
+    
+.tag {
+    position: absolute;
 }
 
 .tag img{
     width: 27px;
 }
 
-.tag-area {
-    position:relative;
+.tag img:hover {
+    width: 35px;
 }
-    
-.tag {
-    position: absolute;
+
+.selected-tag img{
+    width: 42px;
 }
+
+.selected-tag img:hover {
+    width: 42px;
+}
+
+
 
 

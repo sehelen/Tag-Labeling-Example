@@ -20,14 +20,12 @@ function App() {
   };
 
   const selectedNoteHandler = (id, note) => {
-    id ? setSelectedNote(notes.filter(note => note.id == id)[0]) : setSelectedNote(note);
+    id ? setSelectedNote(notes.filter(note => note.id === Number(id))[0]) : setSelectedNote(note);
   };
 
    return (
     <div >
-      <div>
-        <Header/>
-      </div> 
+      <Header/>
       <div className='container'>
         <div className='row'>
           <ImageArea notes={notes} notesHandler={notesHandler} selectedNote={selectedNote} selectedNoteHandler={selectedNoteHandler}/>

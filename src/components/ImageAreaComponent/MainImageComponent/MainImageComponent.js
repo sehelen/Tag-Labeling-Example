@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './MainImageComponent.css';
+import classNames from 'classnames';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 
 function MainImage({image, notes, notesHandler, selectedNote, selectedNoteHandler}){
@@ -36,26 +37,22 @@ function MainImage({image, notes, notesHandler, selectedNote, selectedNoteHandle
     };
 
     const tagDiv = (note, index) => {
-        if (note === selectedNote){
-            return (
-                <div className="tag"  id={note.id} key={index} style={note.tag} onClick={e => selectedNoteHandler(e.target.id)} >
-                    <img style={{width:"42px"}} src={require('../../../images/notebook.png')} id={note.id} onClick={e => selectedNoteHandler(e.target.id)} />
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className="tag" id={note.id} key={index} style={note.tag} onClick={e => selectedNoteHandler(e.target.id)} >
-                    <img src={require('../../../images/notebook.png')} id={note.id} onClick={e => selectedNoteHandler(e.target.id)} />
-                </div>
-            );
-        }
+        const tagClass = classNames({
+            'tag': true,
+            'selected-tag': note === selectedNote
+        });
+        
+        return (
+            <div className={tagClass} id={note.id} key={index} style={note.tag} onClick={e => selectedNoteHandler(e.target.id)} >
+                <img src={require('../../../images/notebook.png')} id={note.id} onClick={e => selectedNoteHandler(e.target.id)} alt="tag" />
+            </div>
+        );
     };
 
     return(
         <div>
             <div className="tag-area">
-                <img className="main-image" onClick={onClick} src={image.preview} />
+                <img className="main-image" onClick={onClick} src={image.preview} alt='mainImg' />
                 {notes.map((note, index) => tagDiv(note, index))}
             </div>
             
