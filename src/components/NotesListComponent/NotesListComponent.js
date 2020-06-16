@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './NotesListComponent.css';
 import classNames from 'classnames';
 import { ListGroup, ListGroupItem } from 'reactstrap';
@@ -6,10 +6,19 @@ import ScrollToBottom, { useScrollTo } from 'react-scroll-to-bottom';
  
 const Content = ({notes, selectedNote, selectedNoteHandler}) => {
   const scrollTo = useScrollTo();
-  const [scrollHeight, setScrollHeight] = useState(0);
+  
+  const scrollToNote = (index) => {
+    let scrollHeight = 0;
 
-  const scrollToNote = () => {
-        scrollTo(scrollHeight);        
+    const items = document.getElementsByClassName('note'); 
+
+    Array.prototype.map.call(items, function(item, i){
+        if (i < index){
+            scrollHeight += item.clientHeight;
+        }
+    });
+        
+    scrollTo(scrollHeight);        
     };
 
   const listItem = (note, index) => {
@@ -19,16 +28,12 @@ const Content = ({notes, selectedNote, selectedNoteHandler}) => {
     });
     
     if (note === selectedNote){
-        //scrollToNote();  
+        scrollToNote(index);  
     }
-    else {
-        //const height = document.getElementById(note.id).clientHeight;     
-        //setScrollHeight(scrollHeight + height);
-    }
- 
+
     return (
         <ListGroupItem className={noteClass}  id={note.id} key={index} onClick={e => selectedNoteHandler(e.target.id)}  >{note.text}</ListGroupItem>
-    );
+        );
     }; 
 
   return (
